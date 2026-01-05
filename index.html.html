@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enciclopedia de Herbolaria Vital | 29 Especies Medicinales</title>
+    <style>
+        :root {
+            --verde-bosque: #1a3c34;
+            --verde-primario: #2d6a4f;
+            --verde-claro: #d8f3dc;
+            --acento: #95d5b2;
+            --texto-oscuro: #1b4332;
+            --blanco: #ffffff;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f7f4;
+            color: var(--texto-oscuro);
+            scroll-behavior: smooth;
+        }
+
+        /* --- Header y Navegación --- */
+        header {
+            background: linear-gradient(rgba(26, 60, 52, 0.85), rgba(26, 60, 52, 0.85)), 
+                        url('https://images.unsplash.com/photo-1470058869958-2a77a67c123f?auto=format&fit=crop&q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+        }
+
+        header h1 { font-size: 3.5rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 2px; }
+        header p { font-size: 1.4rem; font-style: italic; opacity: 0.9; }
+
+        nav {
+            background-color: var(--verde-bosque);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 25px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover { color: var(--acento); }
+
+        /* --- Contenido Principal --- */
+        .container { max-width: 1300px; margin: auto; padding: 40px 20px; }
+
+        .intro-text {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto 60px;
+            font-size: 1.15rem;
+            line-height: 1.8;
+        }
+
+        /* --- Grid de 29 Plantas --- */
+        .plant-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .plant-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .plant-card:hover { transform: translateY(-10px); }
+
+        .plant-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .plant-content { padding: 30px; flex-grow: 1; }
+
+        .plant-content h2 {
+            margin: 0 0 5px 0;
+            color: var(--verde-primario);
+            font-size: 1.8rem;
+        }
+
+        .scientific-name {
+            font-style: italic;
+            color: #666;
+            display: block;
+            margin-bottom: 15px;
+            font-size: 1rem;
+        }
+
+        .plant-description {
+            text-align: justify;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #444;
+            margin-bottom: 20px;
+        }
+
+        .benefits-list {
+            background-color: var(--verde-claro);
+            padding: 15px 20px;
+            border-radius: 12px;
+            list-style: none;
+        }
+
+        .benefits-list li {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .benefits-list li::before {
+            content: "🌿";
+            margin-right: 10px;
+            font-size: 0.8rem;
+        }
+
+        /* --- Sección de Autores --- */
+        .authors-section {
+            background-color: var(--verde-bosque);
+            color: white;
+            padding: 80px 20px;
+            margin-top: 100px;
+        }
+
+        .authors-section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 50px; }
+
+        .authors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+        }
+
+        .author-card {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--acento);
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .author-card:hover { background: rgba(255, 255, 255, 0.15); }
+
+        footer {
+            background-color: #0d211a;
+            color: #888;
+            text-align: center;
+            padding: 40px;
+            font-size: 0.85rem;
+        }
+
+        /* Responsivo */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.2rem; }
+            .plant-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Herbolaria y Salud</h1>
+    <p>Catálogo Extenso de la Sabiduría Natural</p>
+</header>
+
+<nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#plantas">29 Plantas Medicinales</a>
+    <a href="#autores">Créditos del Equipo</a>
+</nav>
+
+<div class="container" id="inicio">
+    <div class="intro-text">
+        <h2>Un Viaje a través de la Medicina Natural</h2>
+        <p>La fitoterapia es la ciencia del uso de extractos de origen natural como medicinas o agentes promotores de la salud. En este catálogo exhaustivo, exploramos 29 especies fundamentales que han acompañado a la humanidad durante siglos, detallando sus compuestos químicos, su historia y las aplicaciones terapéuticas validadas por la tradición y la ciencia moderna.</p>
+    </div>
+
+    <div class="plant-grid" id="plantas">
+        
+        <!-- Planta 1 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1596547609652-9cf5d8d76921?auto=format&fit=crop&q=80&w=600" alt="Aloe Vera">
+            <div class="plant-content">
+                <h2>Aloe Vera</h2>
+                <span class="scientific-name">Aloe barbadensis miller</span>
+                <p class="plant-description">Conocida como la "planta de la inmortalidad", el Aloe Vera contiene más de 75 componentes activos, incluyendo vitaminas, minerales, azúcares y aminoácidos. Es excepcional para la salud dermatológica y digestiva.</p>
+                <ul class="benefits-list">
+                    <li>Regeneración de tejidos en quemaduras.</li>
+                    <li>Potente hidratante y antiinflamatorio cutáneo.</li>
+                    <li>Auxiliar en el tratamiento de gastritis y estreñimiento.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 2 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1597481499750-3e6b22637e12?auto=format&fit=crop&q=80&w=600" alt="Manzanilla">
+            <div class="plant-content">
+                <h2>Manzanilla</h2>
+                <span class="scientific-name">Matricaria chamomilla</span>
+                <p class="plant-description">Una de las plantas más consumidas en el mundo. Sus flores secas contienen flavonoides y terpenoides que contribuyen a sus propiedades medicinales sedantes y antiespasmódicas de amplio espectro.</p>
+                <ul class="benefits-list">
+                    <li>Alivio de trastornos digestivos y gases.</li>
+                    <li>Inducción del sueño y reducción del estrés.</li>
+                    <li>Tratamiento de irritaciones oculares y cutáneas.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 3 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1595908129746-57ca1a63dd4d?auto=format&fit=crop&q=80&w=600" alt="Lavanda">
+            <div class="plant-content">
+                <h2>Lavanda</h2>
+                <span class="scientific-name">Lavandula angustifolia</span>
+                <p class="plant-description">Reconocida por su fragancia única, la lavanda posee aceites esenciales con propiedades ansiolíticas y neuroprotectoras. Es la planta reina en la aromaterapia moderna y la relajación muscular.</p>
+                <ul class="benefits-list">
+                    <li>Reducción significativa de la ansiedad y depresión leve.</li>
+                    <li>Alivio de migrañas y cefaleas tensionales.</li>
+                    <li>Propiedades antisépticas para heridas leves.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 4 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1628556270448-4d4e4148e1b1?auto=format&fit=crop&q=80&w=600" alt="Menta">
+            <div class="plant-content">
+                <h2>Menta</h2>
+                <span class="scientific-name">Mentha piperita</span>
+                <p class="plant-description">La menta es valorada por su alto contenido de mentol. Es una planta estimulante que ayuda a despejar las vías respiratorias y a tonificar el sistema digestivo tras comidas pesadas.</p>
+                <ul class="benefits-list">
+                    <li>Descongestionante nasal y expectorante.</li>
+                    <li>Alivio del síndrome del intestino irritable.</li>
+                    <li>Combate el mal aliento y las bacterias orales.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 5 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1594313016519-640ed47407ea?auto=format&fit=crop&q=80&w=600" alt="Romero">
+            <div class="plant-content">
+                <h2>Romero</h2>
+                <span class="scientific-name">Rosmarinus officinalis</span>
+                <p class="plant-description">El romero es un potente antioxidante gracias al ácido rosmarínico. Ha sido utilizado históricamente para mejorar la salud cognitiva, la memoria y fortalecer el sistema circulatorio.</p>
+                <ul class="benefits-list">
+                    <li>Mejora de la concentración y agudeza mental.</li>
+                    <li>Estimulación del crecimiento capilar.</li>
+                    <li>Propiedades analgésicas para dolores articulares.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 6 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25?auto=format&fit=crop&q=80&w=600" alt="Jengibre">
+            <div class="plant-content">
+                <h2>Jengibre</h2>
+                <span class="scientific-name">Zingiber officinale</span>
+                <p class="plant-description">Su rizoma es una farmacia natural. El gingerol presente le otorga capacidades antiinflamatorias que rivalizan con medicamentos convencionales para el control de náuseas y dolor.</p>
+                <ul class="benefits-list">
+                    <li>Eficaz contra mareos y náuseas del embarazo.</li>
+                    <li>Reducción de la inflamación muscular crónica.</li>
+                    <li>Termogénico que acelera el metabolismo.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 7 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1512429234300-1c0130f60971?auto=format&fit=crop&q=80&w=600" alt="Eucalipto">
+            <div class="plant-content">
+                <h2>Eucalipto</h2>
+                <span class="scientific-name">Eucalyptus globulus</span>
+                <p class="plant-description">Originario de Australia, el eucalipto es el aliado número uno contra las afecciones respiratorias. Sus vapores ayudan a abrir los bronquios y eliminar patógenos del aire.</p>
+                <ul class="benefits-list">
+                    <li>Expectorante potente para resfriados y bronquitis.</li>
+                    <li>Acción antimicrobiana y desinfectante.</li>
+                    <li>Alivio sintomático del asma y sinusitis.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 8 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1615485242252-c266850d9981?auto=format&fit=crop&q=80&w=600" alt="Cúrcuma">
+            <div class="plant-content">
+                <h2>Cúrcuma</h2>
+                <span class="scientific-name">Curcuma longa</span>
+                <p class="plant-description">La curcumina es el compuesto estrella de esta raíz. Es uno de los antiinflamatorios naturales más estudiados, con beneficios que se extienden hasta la prevención de enfermedades neurodegenerativas.</p>
+                <ul class="benefits-list">
+                    <li>Potente antiinflamatorio para artritis.</li>
+                    <li>Mejora la función hepática y biliar.</li>
+                    <li>Antioxidante que protege el ADN celular.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 9 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1667140738361-ec2367468641?auto=format&fit=crop&q=80&w=600" alt="Ginkgo Biloba">
+            <div class="plant-content">
+                <h2>Ginkgo Biloba</h2>
+                <span class="scientific-name">Ginkgo biloba</span>
+                <p class="plant-description">Considerado un "fósil viviente", el extracto de sus hojas mejora la microcirculación cerebral, lo que favorece el suministro de oxígeno y nutrientes a las neuronas.</p>
+                <ul class="benefits-list">
+                    <li>Mejora de la memoria a corto y largo plazo.</li>
+                    <li>Alivio del tinnitus (zumbido en los oídos).</li>
+                    <li>Tratamiento de la insuficiencia circulatoria periférica.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 10 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1643906665780-6927a3c3014a?auto=format&fit=crop&q=80&w=600" alt="Echinacea">
+            <div class="plant-content">
+                <h2>Equinácea</h2>
+                <span class="scientific-name">Echinacea purpurea</span>
+                <p class="plant-description">Es la planta inmunomoduladora por excelencia. Se utiliza para fortalecer las defensas del cuerpo antes y durante los cambios de estación, ayudando a prevenir infecciones virales.</p>
+                <ul class="benefits-list">
+                    <li>Reduce la duración y gravedad del resfriado común.</li>
+                    <li>Estimulación de la producción de glóbulos blancos.</li>
+                    <li>Cicatrizante natural en uso tópico.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 11 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1666874026339-a99f9293888e?auto=format&fit=crop&q=80&w=600" alt="Valeriana">
+            <div class="plant-content">
+                <h2>Valeriana</h2>
+                <span class="scientific-name">Valeriana officinalis</span>
+                <p class="plant-description">Utilizada desde la antigua Grecia, su raíz es un sedante natural que actúa sobre el sistema nervioso central para inducir un sueño reparador sin los efectos secundarios de los fármacos químicos.</p>
+                <ul class="benefits-list">
+                    <li>Tratamiento del insomnio y trastornos del sueño.</li>
+                    <li>Reducción del estrés psicológico y palpitaciones nerviosas.</li>
+                    <li>Relajante muscular suave.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 12 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1599815413166-5e04da0ef764?auto=format&fit=crop&q=80&w=600" alt="Diente de León">
+            <div class="plant-content">
+                <h2>Diente de León</h2>
+                <span class="scientific-name">Taraxacum officinale</span>
+                <p class="plant-description">A menudo considerada una maleza, es en realidad un depurativo hepático extraordinario. Ayuda a limpiar la sangre y a mejorar la digestión de las grasas mediante la estimulación biliar.</p>
+                <ul class="benefits-list">
+                    <li>Desintoxicación profunda del hígado y riñones.</li>
+                    <li>Diurético natural que combate la retención de líquidos.</li>
+                    <li>Aporte significativo de vitaminas A y C.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 13 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1528183429752-a97d0bf99b5a?auto=format&fit=crop&q=80&w=600" alt="Sauce Blanco">
+            <div class="plant-content">
+                <h2>Sauce Blanco</h2>
+                <span class="scientific-name">Salix alba</span>
+                <p class="plant-description">De su corteza se extrae la salicina, el precursor natural de la aspirina. Es un analgésico milenario utilizado para tratar dolores óseos y estados febriles de forma orgánica.</p>
+                <ul class="benefits-list">
+                    <li>Alivio de dolores de espalda y articulaciones.</li>
+                    <li>Control natural de la fiebre.</li>
+                    <li>Anticoagulante suave.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 14 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1615484477021-a083d0382343?auto=format&fit=crop&q=80&w=600" alt="Tomillo">
+            <div class="plant-content">
+                <h2>Tomillo</h2>
+                <span class="scientific-name">Thymus vulgaris</span>
+                <p class="plant-description">Rico en timol, el tomillo tiene propiedades antibióticas y antifúngicas potentes. Es excelente para infecciones de garganta y para mantener la salud del sistema digestivo.</p>
+                <ul class="benefits-list">
+                    <li>Tratamiento de faringitis y tos persistente.</li>
+                    <li>Mejora de la digestión y eliminación de parásitos.</li>
+                    <li>Antiséptico natural para heridas.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 15 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1618164436241-4473940d1f5c?auto=format&fit=crop&q=80&w=600" alt="Albahaca">
+            <div class="plant-content">
+                <h2>Albahaca</h2>
+                <span class="scientific-name">Ocimum basilicum</span>
+                <p class="plant-description">Más que un condimento, la albahaca ayuda a reducir el cortisol (la hormona del estrés) y tiene efectos protectores sobre el corazón y los vasos sanguíneos.</p>
+                <ul class="benefits-list">
+                    <li>Adaptógeno que ayuda a manejar el estrés mental.</li>
+                    <li>Propiedades antibacterianas contra estafilococos.</li>
+                    <li>Alivio de picaduras de insectos.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 16 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1599395914105-875880199e71?auto=format&fit=crop&q=80&w=600" alt="Canela">
+            <div class="plant-content">
+                <h2>Canela</h2>
+                <span class="scientific-name">Cinnamomum verum</span>
+                <p class="plant-description">Esta especia obtenida de la corteza interna de los árboles Cinnamomum ayuda a regular los niveles de azúcar en sangre al mejorar la sensibilidad a la insulina.</p>
+                <ul class="benefits-list">
+                    <li>Control de la glucosa en pacientes prediabéticos.</li>
+                    <li>Potente agente antimicrobiano y conservante.</li>
+                    <li>Mejora la digestión y reduce la hinchazón.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 17 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&q=80&w=600" alt="Ajo">
+            <div class="plant-content">
+                <h2>Ajo</h2>
+                <span class="scientific-name">Allium sativum</span>
+                <p class="plant-description">El ajo contiene alicina, responsable de su olor y de su increíble poder antibiótico. Se le considera un superalimento para la salud cardiovascular y la presión arterial.</p>
+                <ul class="benefits-list">
+                    <li>Reducción del colesterol y triglicéridos.</li>
+                    <li>Control natural de la hipertensión.</li>
+                    <li>Refuerzo del sistema inmune contra gripes.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 18 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1595123550441-d377e017de6a?auto=format&fit=crop&q=80&w=600" alt="Laurel">
+            <div class="plant-content">
+                <h2>Laurel</h2>
+                <span class="scientific-name">Laurus nobilis</span>
+                <p class="plant-description">Las hojas de laurel facilitan la digestión y previenen la acidez estomacal. También poseen cineol, lo que las hace útiles para tratar afecciones respiratorias por inhalación.</p>
+                <ul class="benefits-list">
+                    <li>Estimulante digestivo y antiflatulento.</li>
+                    <li>Regulación de la menstruación.</li>
+                    <li>Propiedades antiinflamatorias musculares.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 19 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1515471204579-f30b05024b1d?auto=format&fit=crop&q=80&w=600" alt="Oregano">
+            <div class="plant-content">
+                <h2>Orégano</h2>
+                <span class="scientific-name">Origanum vulgare</span>
+                <p class="plant-description">Contiene carvacrol y timol, compuestos que actúan como "antibióticos naturales". El aceite de orégano es muy valorado por su capacidad para combatir bacterias resistentes.</p>
+                <ul class="benefits-list">
+                    <li>Acción antibacteriana y antifúngica severa.</li>
+                    <li>Tratamiento de infecciones urinarias leves.</li>
+                    <li>Propiedades expectorantes en infusiones.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 20 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1560806887-1e4cd0b6bccb?auto=format&fit=crop&q=80&w=600" alt="Hinojo">
+            <div class="plant-content">
+                <h2>Hinojo</h2>
+                <span class="scientific-name">Foeniculum vulgare</span>
+                <p class="plant-description">Ideal para problemas estomacales, el hinojo relaja los músculos del tracto digestivo. Es muy utilizado para tratar cólicos en bebés y para estimular la lactancia.</p>
+                <ul class="benefits-list">
+                    <li>Eliminación eficaz de gases intestinales.</li>
+                    <li>Alivio de dolores menstruales (dismenorrea).</li>
+                    <li>Aporte de fibra para la salud del colon.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 21 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1502394202744-021cfbb17454?auto=format&fit=crop&q=80&w=600" alt="Cola de Caballo">
+            <div class="plant-content">
+                <h2>Cola de Caballo</h2>
+                <span class="scientific-name">Equisetum arvense</span>
+                <p class="plant-description">Famosa por su alto contenido en sílice, mineral esencial para la formación de colágeno y la salud de huesos, piel, cabello y uñas. Es uno de los mejores diuréticos vegetales.</p>
+                <ul class="benefits-list">
+                    <li>Remineralización de huesos y cartílagos.</li>
+                    <li>Eliminación de toxinas por vía renal.</li>
+                    <li>Fortalecimiento capilar y prevención de caída.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 22 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1588710920403-d636ca679f22?auto=format&fit=crop&q=80&w=600" alt="Hierbabuena">
+            <div class="plant-content">
+                <h2>Hierbabuena</h2>
+                <span class="scientific-name">Mentha spicata</span>
+                <p class="plant-description">Más suave que la menta piperita, la hierbabuena es ideal para calmar los nervios del estómago y mejorar el aliento de forma natural y refrescante.</p>
+                <ul class="benefits-list">
+                    <li>Alivio de espasmos abdominales y náuseas.</li>
+                    <li>Efecto relajante suave sobre el sistema nervioso.</li>
+                    <li>Auxiliar en tratamientos de asma leve.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 23 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1615484476889-1fc5497ee077?auto=format&fit=crop&q=80&w=600" alt="Salvia">
+            <div class="plant-content">
+                <h2>Salvia</h2>
+                <span class="scientific-name">Salvia officinalis</span>
+                <p class="plant-description">Su nombre proviene del latín "salvare" (salvar). Es rica en vitamina K y tiene una fuerte acción estrogénica, por lo que es la planta de elección para problemas femeninos.</p>
+                <ul class="benefits-list">
+                    <li>Reducción de sofocos en la menopausia.</li>
+                    <li>Mejora de la función cerebral y memoria.</li>
+                    <li>Antiséptico bucal (aftas y gingivitis).</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 24 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1589133880564-96860010830a?auto=format&fit=crop&q=80&w=600" alt="Calendula">
+            <div class="plant-content">
+                <h2>Caléndula</h2>
+                <span class="scientific-name">Calendula officinalis</span>
+                <p class="plant-description">Sus flores naranjas son un tesoro para la piel. Contienen flavonoides que aceleran la epitelización y regeneración de la dermis dañada por cortes o eccemas.</p>
+                <ul class="benefits-list">
+                    <li>Cicatrización rápida de heridas y úlceras.</li>
+                    <li>Tratamiento de dermatitis del pañal en bebés.</li>
+                    <li>Propiedades antiinflamatorias y antisépticas.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 25 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1589927986089-35812388d1f4?auto=format&fit=crop&q=80&w=600" alt="Ginseng">
+            <div class="plant-content">
+                <h2>Ginseng</h2>
+                <span class="scientific-name">Panax ginseng</span>
+                <p class="plant-description">El ginseng es el adaptógeno más famoso de Asia. Ayuda al cuerpo a resistir el estrés físico y mental, incrementando los niveles de energía y vitalidad general.</p>
+                <ul class="benefits-list">
+                    <li>Aumento del rendimiento físico y cognitivo.</li>
+                    <li>Fortalecimiento del sistema inmunitario.</li>
+                    <li>Mejora de la función eréctil y libido.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 26 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1626379953822-baec19c3bbcd?auto=format&fit=crop&q=80&w=600" alt="Ortiga">
+            <div class="plant-content">
+                <h2>Ortiga</h2>
+                <span class="scientific-name">Urtica dioica</span>
+                <p class="plant-description">A pesar de su capacidad irritante, la ortiga procesada es riquísima en hierro y clorofila. Se utiliza para combatir la anemia y como purificador sanguíneo.</p>
+                <ul class="benefits-list">
+                    <li>Tratamiento natural de la anemia ferropénica.</li>
+                    <li>Alivio de síntomas de alergias estacionales.</li>
+                    <li>Salud de la próstata en hombres mayores.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 27 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1541234327332-5d27bbfe937b?auto=format&fit=crop&q=80&w=600" alt="Pasionaria">
+            <div class="plant-content">
+                <h2>Pasionaria</h2>
+                <span class="scientific-name">Passiflora incarnata</span>
+                <p class="plant-description">La flor de la pasión es uno de los calmantes naturales más potentes. Ideal para personas que sufren de insomnio por rumiación de pensamientos o ansiedad nocturna.</p>
+                <ul class="benefits-list">
+                    <li>Control de ataques de pánico y ansiedad.</li>
+                    <li>Sedante suave sin efecto de somnolencia matutina.</li>
+                    <li>Relajación de espasmos musculares.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 28 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1627916607164-7b20241db935?auto=format&fit=crop&q=80&w=600" alt="Tila">
+            <div class="plant-content">
+                <h2>Tila</h2>
+                <span class="scientific-name">Tilia platyphyllos</span>
+                <p class="plant-description">Extraída de las flores del tilo, la tila es el remedio tradicional para calmar los nervios. Tiene propiedades diaforéticas (induce el sudor) útiles en gripes.</p>
+                <ul class="benefits-list">
+                    <li>Calmante del sistema nervioso central.</li>
+                    <li>Ayuda a bajar la presión arterial nerviosa.</li>
+                    <li>Reduce la fiebre mediante la transpiración.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Planta 29 -->
+        <div class="plant-card">
+            <img src="https://images.unsplash.com/photo-1492496913980-501348b61469?auto=format&fit=crop&q=80&w=600" alt="Arnica">
+            <div class="plant-content">
+                <h2>Árnica</h2>
+                <span class="scientific-name">Arnica montana</span>
+                <p class="plant-description">Es la planta predilecta para traumatismos. Su uso principal es tópico, ya que estimula la circulación sanguínea local para eliminar moretones e inflamaciones rápidamente.</p>
+                <ul class="benefits-list">
+                    <li>Eliminación de hematomas y moretones.</li>
+                    <li>Alivio inmediato de esguinces y contusiones.</li>
+                    <li>Propiedades analgésicas para post-operatorios externos.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<section class="authors-section" id="autores">
+    <div class="container">
+        <h2>Créditos del Equipo de Desarrollo</h2>
+        <div class="authors-grid">
+            <div class="author-card">1. Alcantara Bernal Cristobal Sebastian</div>
+            <div class="author-card">2. Almazan Salazar Gisela Goreti</div>
+            <div class="author-card">3. Alvarez Ruiz Jaqueline</div>
+            <div class="author-card">4. Arias Guadarrama Melany Kibeth</div>
+            <div class="author-card">5. Arriaga Barradas Marilyn Abril</div>
+            <div class="author-card">6. Carbajal Talavera Alejandro</div>
+            <div class="author-card">7. Castro Rosales Lizbeth</div>
+            <div class="author-card">8. Ceriño Garduño Osvaldo Caleb</div>
+            <div class="author-card">9. Colin Alonso Alexis Raul</div>
+            <div class="author-card">10. Diaz Alcántara Zahir</div>
+            <div class="author-card">11. Diaz Gutierrez Nataly Guadalupe</div>
+            <div class="author-card">12. Elias Mata Raul Jese</div>
+            <div class="author-card">13. Fuentes Madero Yuliana Arizbeth</div>
+            <div class="author-card">14. Garcia Maya Diana Elizabeth</div>
+            <div class="author-card">15. Garcia Maya Jaquelin</div>
+            <div class="author-card">16. Garcia Sanchez Fernando</div>
+            <div class="author-card">17. Garduño Rojas Alexa Elizabeth</div>
+            <div class="author-card">18. Garfias Lopez Esmeralda</div>
+            <div class="author-card">19. Gonzalez Cortes Pamela Aide</div>
+            <div class="author-card">20. Gonzalez Diaz Brenda Denisse</div>
+            <div class="author-card">21. Guadarrama Piña Esmeralda</div>
+            <div class="author-card">22. Gutierrez Rosas Jose Antonio</div>
+            <div class="author-card">23. Hernandez Mesas Jehosua</div>
+            <div class="author-card">24. Hernandez Rosas Cristopher</div>
+            <div class="author-card">25. Lopez Gonzalez Noemi</div>
+            <div class="author-card">26. Lopez Manjarrez Maria del Rosario</div>
+            <div class="author-card">27. Luna Nuñez Emily</div>
+            <div class="author-card">28. Malvaez Valdez Sayuri Guadalupe</div>
+            <div class="author-card">29. Manjarrez Gomez Vania de Jesus</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2024 - 2026 Proyecto Académico de Ciencias Naturales. Todos los derechos reservados.</p>
+    <p><small>Aviso legal: Esta página es informativa. El uso de plantas medicinales debe ser supervisado por un profesional de la salud.</small></p>
+</footer>
+
+</body>
+</html>
